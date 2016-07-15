@@ -1,0 +1,12 @@
+scopes:
+  - scope1
+  - scope2
+sp:
+  - scope1 [p1,p2,p3]
+  - scope2 [p9,p1]
+read_setup:
+  -scope1 [scope1s.yaml]
+  -scope2 [scope2s.yaml, onemore.yaml]
+reserved:
+
+ 
