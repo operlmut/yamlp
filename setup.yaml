@@ -1,12 +1,18 @@
 scopes:
   - scope1
   - scope2
+  - test_top_scope
+scopes_relations:
+  - test_top_scope : [scope1] ## scope1 is a son of test_top_scope, FP = test_top_scope/scope1
+  - scope1 : [scope2]
+  - test_top_scope : [scope2]
+  ##- scope1 [test_top_scope] ## This is an error state
 sp:
-  - scope1 [p1,p2,p3]
-  - scope2 [p9,p1]
+  - scope1 : ['$HOME/workspace/sp1,$HOME/workspace/sp2','$HOME/workspace/sp3']
+  - scope2 : ['$HOME/workspace//sp9,$HOME/workspace/sp1']
 read_setup:
-  -scope1 [scope1s.yaml]
-  -scope2 [scope2s.yaml, onemore.yaml]
+  - scope1 : [scope1s.yaml]
+  - scope2 : [scope2s.yaml, onemore.yaml]
 reserved:
 
  
