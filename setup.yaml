@@ -2,15 +2,27 @@ scopes:
   - scope1
   - scope2
   - test_top_scope
+  - scope70
+  - scope20
+  - scope3
 scopes_relations:
   - test_top_scope : [scope1,scope3,scope2,scope70] ## scope1 is a son of test_top_scope, FP = test_top_scope/scope1
   - scope1 : [scope2]##actually test_top_scope/scope1/scope2
   - scope2 : [scope20,scope70]
-  ##- scope1 [test_top_scope] ## This is an error state
+  ##- scope1 : [test_top_scope] ## This is an error state, need validation of this. Now python gives rec error.
 sp:
-  - scope1 : ['$HOME/workspace/sp1,$HOME/workspace/sp2','$HOME/workspace/sp3']
-  - scope2 : ['$HOME/workspace/sp9,$HOME/workspace/sp1']
-  - scope3 : ['$HOME/workspace/sp37']
+  - 'test_top_scope/scope1' :                ['$HOME/workspace/sp1','$HOME/workspace/sp2','$HOME/workspace/sp3']
+  - 'test_top_scope/scope2' :                ['$HOME/workspace/sp9,$HOME/workspace/sp1']
+  - 'test_top_scope/scope3' :                ['$HOME/workspace/sp3']
+  - 'test_top_scope/scope1/scope2' :         ['$HOME/workspace/sp12']
+  - 'test_top_scope/scope1/scope2/scope70' : ['$HOME/workspace/sp1270']
+  - 'test_top_scope' :                       ['$HOME/workspace/sptop'] 
+  - 'test_top_scope/scope1/scope2/scope20' : ['$HOME/workspace/sp1220']
+  - 'scope2' :                               ['$HOME/workspace/SP2'] ## This is default value for scope2, wherever it is.
+#  - 'test_top_scope/scope2/scope20' :        ['$HOME/workspace/sp220'] ##It should take the default from scope2
+#  - 'test_top_scope/scope2/scope70' :        ['$HOME/workspace/sp270'] ##It should take default from scope2
+  - 'test_top_scope/scope70'        :        ['$HOME/workspace/sp70']
+  
 read_setup:
   - scope1 : [scope1s.yaml]
   - scope2 : [scope2s.yaml, onemore.yaml]
