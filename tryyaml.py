@@ -102,7 +102,9 @@ class setup:
         self._scopes_hierarchies=self._make_scopes_hierarchy([self.get_top_scope()],self.get_top_scope())
         self.sp=self._make_sp_by_scope() ##corrected values of sp
         pass
-    
+    def get_read_setup(self):
+        return self.ymlsetup['read_setup'] ## need files locations to be fully resolved 
+        
     def get_all_scopes_flat(self):
         if os.environ.get('TOPSCOPE') not in self.ymlsetup['scopes']:
             print ("Error, the top scope defined by setup is ({}) not found in the scopes collection {}".format(os.environ.get('TOPSCOPE'), self.ymlsetup['scopes']))
@@ -137,7 +139,7 @@ def main():
     #print (mainsetup.get_all_instances_of_scope('scope2'))
     for sc in mainsetup.get_scopes_structure():
         print (sc)
-    
+    print (mainsetup.get_read_setup())
 def read_and_print():
     
     a=dict()
