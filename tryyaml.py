@@ -67,8 +67,6 @@ class setup:
                     if _potential_sscope_withno_sp not in self.sp and match :
                         tmp_sp_dict[_potential_sscope_withno_sp]=self.sp[_spscope]
         self.sp=tmp_sp_dict
-        pass
-        #expand the real dir names
         for _sp_scope in self.sp:
             _resolved_paths_list=list()
             for _path in self.sp[_sp_scope]:
