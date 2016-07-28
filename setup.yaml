@@ -11,8 +11,8 @@ scopes_relations:
   - scope2 : [scope20,scope70]
   ##- scope1 : [test_top_scope] ## This is an error state, need validation of this. Now python gives rec error.
 sp:
-  - 'test_top_scope/scope1' :                ['$HOME/workspace/yamlp/sp1','$HOME/workspace/yamlp/sp2','$HOME/workspace/yamlp/sp3']
-  - 'test_top_scope/scope2' :                ['$HOME/workspace/yamlp/sp9,$HOME/workspace/yamlp/sp1']
+  - 'test_top_scope/scope1' :                ["${HOME}/workspace/yamlp/sp1",'$HOME/workspace/yamlp/sp2','$HOME/workspace/yamlp/sp3']
+  - 'test_top_scope/scope2' :                ['$HOME/workspace/yamlp/sp9','$HOME/workspace/yamlp/sp1']
   - 'test_top_scope/scope3' :                ['$HOME/workspace/yamlp/sp3']
   - 'test_top_scope/scope1/scope2' :         ['$HOME/workspace/yamlp/sp12']
   - 'test_top_scope/scope1/scope2/scope70' : ['$HOME/workspace/yamlp/sp1270']
