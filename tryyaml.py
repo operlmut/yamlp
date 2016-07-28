@@ -58,9 +58,8 @@ class setup:
         tmp_sp_dict=dict()
         for _spscope in self.sp:
             if _spscope in self._scopes_hierarchies: 
-                #print ('SP for ({}) has been found ({})'.format(_spscope,self.sp[_spscope]))
+                logging.debug ('SP for ({}) has been found ({})'.format(_spscope,self.sp[_spscope]))
                 tmp_sp_dict[_spscope]=self.sp[_spscope]
-                pass
             else :
                 sscope_pattern=re.compile(_spscope)
                 for _potential_sscope_withno_sp in self._scopes_hierarchies:
@@ -68,6 +67,17 @@ class setup:
                     if _potential_sscope_withno_sp not in self.sp and match :
                         tmp_sp_dict[_potential_sscope_withno_sp]=self.sp[_spscope]
         self.sp=tmp_sp_dict
+        pass
+        #expand the real dir names
+        for _sp_scope in self.sp:
+            _resolved_paths_list=list()
+            for _path in self.sp[_sp_scope]:
+                if  os.path.isdir(os.path.abspath(os.path.expandvars(_path))):
+                    _resolved_paths_list.append(os.path.expandvars(_path))
+                    logging.debug ("({}) mentioned path ({}) - expanded path ({})".format(_sp_scope,_path,os.path.expandvars(_path)))
+                else:
+                    sys.exit("mentioned path ({}) does not exist of not a dir, exiting..".format(_path))
+            self.sp[_sp_scope]=_resolved_paths_list ## resolved names
         #now need to validate of all scopes are ok with their SP
         missing_sp=list()
         for scope in self._scopes_hierarchies:
@@ -100,7 +110,7 @@ class setup:
         for D in self.ymlsetup['sp']:
             self.sp.update(D)
         self._scopes_hierarchies=self._make_scopes_hierarchy([self.get_top_scope()],self.get_top_scope())
-        self.sp=self._make_sp_by_scope() ##corrected values of sp
+        self._make_sp_by_scope() ##corrected & expanded values of sp
         pass
     def get_read_setup(self):
         return self.ymlsetup['read_setup'] ## need files locations to be fully resolved 
@@ -140,6 +150,7 @@ def main():
     for sc in mainsetup.get_scopes_structure():
         print (sc)
     print (mainsetup.get_read_setup())
+    print ("SP=",mainsetup.sp)
 def read_and_print():
     
     a=dict()
