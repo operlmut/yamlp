@@ -1,4 +1,4 @@
- 'import': ['scope1:file2.yaml']
+ #'import': ['scope1:file2.yaml']
  'HDLSpec(scope1)':
    libs: ['l1','l2','l3']
    models: ['m1','m2','m3']

@@ -18,6 +18,7 @@
 
 ''''''
 from xml.etree.ElementTree import _Element_Py
+from MakeConfig.ReadAll import all_configs
  
 
 @author: agruzman
@@ -111,7 +112,9 @@ class setup:
         self._make_sp_by_scope() ##corrected & expanded values of sp
         pass
     def get_read_setup(self):
-        return self.ymlsetup['read_setup'] ## need files locations to be fully resolved 
+        _conf=dict()
+        _conf=self.ymlsetup['read_setup']
+        return _conf  ## need files locations to be fully resolved 
         
     def get_all_scopes_flat(self):
         if os.environ.get('TOPSCOPE') not in self.ymlsetup['scopes']:
@@ -123,7 +126,11 @@ class setup:
     def get_scopes_structure(self):
         return self._scopes_hierarchies #returns a list of scopes in the format of top/sub1/sub2...
     def get_sp_by_scope (self, scope=os.environ.get('TOPSCOPE')):
-        pass ## scope has to be fully qualified
+        #returns a list of resolved dirs names where to perform the search
+        if self.sp[scope]:
+            return self.sp[scope]
+        else:
+            sys.exit("Specified scope does not exist...exiting".format(scope))
     def get_all_instances_of_scope(self,currentscope): #returns list
         scope_pattern =re.compile(currentscope)
         l=list()
@@ -141,14 +148,21 @@ class setup:
     
                     
 def main():
+    import MakeConfig.ReadAll.classes
     #read_and_print()
     mainsetup=setup() ##instance of the first setup object
     #print (mainsetup.get_all_scopes_flat())
     #print (mainsetup.get_all_instances_of_scope('scope2'))
-    for sc in mainsetup.get_scopes_structure():
-        print (sc)
-    print (mainsetup.get_read_setup())
-    print ("SP=",mainsetup.sp)
+    #for sc in mainsetup.get_scopes_structure():
+    #    print (sc)
+    #print (mainsetup.get_read_setup())
+    #print ("SP=",mainsetup.sp)
+    print(mainsetup.get_read_setup())
+    print(mainsetup.get_top_scope())
+    print ("brr",mainsetup.get_sp_by_scope(os.environ.get('TOPSCOPE')))
+    setup_conf=MakeConfig.ReadAll.classes.all_configs(mainsetup)
+    print ("Brr",setup_conf.topconfig)
+    pass
 def read_and_print():
     
     a=dict()

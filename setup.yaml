@@ -24,9 +24,9 @@ sp:
   - 'test_top_scope/scope70'        :        ['$HOME/workspace/yamlp/sp70']
   
 read_setup:
-  - 'test_top_scope/scope1' : ['top.yaml','scope1.yaml']
-  - scope2 : [scope2s.yaml, onemore.yaml]
-  - scope3 : [scope3.yaml]
+   test_top_scope : ['top.yaml',]
+   scope2 : [scope2s.yaml, onemore.yaml] ##
+   scope3 : [scope3.yaml]
 reserved:
 
  

@@ -5,7 +5,7 @@ Created on Jul 29, 2016
 '''
 import os
 import sys
-def FindFileOrDir (**kwargs):
+def ffordir (**kwargs):
     i=kwargs['item']
     sp=kwargs['where']
     found = False
@@ -19,7 +19,8 @@ def FindFileOrDir (**kwargs):
                 found=True
                 break
     if found: 
-        return os.path.join(_cand_dir,i)
+        return os.path.abspath(os.path.join(_cand_dir,i))##on windows it is \\file :(
+        
     else: 
-        sys.exit("Cant find  ({}) @ ({sp} as ({})".format(i,sp,kwargs['what']))
+        sys.exit("Cant find  ({}) @ ({} as ({})".format(i,sp,kwargs['what']))
         
