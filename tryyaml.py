@@ -161,7 +161,6 @@ def main():
     print(mainsetup.get_top_scope())
     print ("brr",mainsetup.get_sp_by_scope(os.environ.get('TOPSCOPE')))
     setup_conf=MakeConfig.ReadAll.classes.all_configs(mainsetup)
-    print ("Brr",setup_conf.topconfig)
     pass
 def read_and_print():
     
