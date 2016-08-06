@@ -4,7 +4,7 @@ Created on Jul 29, 2016
 @author: agruzman
 '''
 import yaml
-import MakeConfig.Utils.FileDictListUtils
+import Utils.FileDictListUtils
 import os
 import sys
 class all_configs():
@@ -31,7 +31,7 @@ class all_configs():
         for _top_yaml in setup_obj.get_read_setup():
             if _top_yaml == os.environ.get('TOPSCOPE'):
                 for _item in setup_obj.get_read_setup()[_top_yaml]:
-                    self.topconfig.append(MakeConfig.Utils.FileDictListUtils.ffordir(
+                    self.topconfig.append(Utils.FileDictListUtils.ffordir(
                                                                                      what='file',
                                                                                      item=_item,
                                                                                      where=_where
