@@ -9,7 +9,7 @@ import os
 import sys
 class all_configs():
     def _read_yaml_configs(self):
-        for _ymlf in self.topconfig:
+        for _ymlf in self.topconfig: ##need to read them all, because it may be more than one config
             if os.path.isfile(_ymlf):
                 f=open(_ymlf)
                 try:
@@ -29,7 +29,7 @@ class all_configs():
         _where=setup_obj.get_sp_by_scope()
         #finding all of the yamls that are mentioned for configuration
         for _top_yaml in setup_obj.get_read_setup():
-            if _top_yaml == os.environ.get('TOPSCOPE'):
+            if _top_yaml == os.environ.get('TOPSCOPE'): ##Start from the top
                 for _item in setup_obj.get_read_setup()[_top_yaml]:
                     self.topconfig.append(Utils.FileDictListUtils.ffordir(
                                                                                      what='file',
