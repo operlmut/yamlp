@@ -1,4 +1,1 @@
--SPEC_hdl
-
--SPEC_exe
--
+specHDL: [libs,models,top]
