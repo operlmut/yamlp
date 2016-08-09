@@ -148,7 +148,7 @@ class setup:
     
                     
 def main():
-    import MakeConfig.ReadAll.classes
+    import MakeConfig.ReadAll.cfg_classes
     #read_and_print()
     mainsetup=setup() ##instance of the first setup object
     #print (mainsetup.get_all_scopes_flat())
@@ -160,7 +160,7 @@ def main():
     print(mainsetup.get_read_setup())
     print(mainsetup.get_top_scope())
     print ("brr",mainsetup.get_sp_by_scope(os.environ.get('TOPSCOPE')))
-    setup_conf=MakeConfig.ReadAll.classes.all_configs(mainsetup)
+    setup_conf=MakeConfig.ReadAll.cfg_classes.all_configs(mainsetup)
     pass
 def read_and_print():
     

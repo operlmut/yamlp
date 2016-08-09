@@ -1,18 +1,25 @@
  #'import': ['scope1:file2.yaml']
- 'specHDL(scope1)':
-   libs: ['l1','l2','l3']
-   models: ['m1','m2','m3']
-   l1: ['l1.yaml']
-   l2: ['l2.yaml']
-   m1: 
-    'libs': [l1,l2]
-    'put_libs': [l1] ## will be used by others to "get_libs"
-    'model_specific_params': 
-      - opt_sim_comp : ['+define+custom="string"',]
-      - opt_sim_elab : ["+d=4'hbbcc","+fix=4'b0110",]
-      - opt_sim_run :  []
-      - opt_lint_run: []
-      - opt_cdc_run: []
-      - opt_synth_run: []
-      - opt_fev_run: []
+ 'specHDL(test_top_scope)':
+  'libs':
+    l1: ['l1.yaml']
+    l2: ['l2.yaml']
+  'models':
+    m2:
+      top : 'm2_top'
+      libs: [l1,]
+    m3:
+      top: 'm3_top'
+      libs: [l2]
+    m1: 
+      top: m1_top
+      'libs': [l1,l2]
+      'put_libs': [l1] ## will be used by others to "get_libs"
+      'model_specific_params': 
+        - opt_sim_comp : ['+define+custom="string"',]
+        - opt_sim_elab : ["+d=4'hbbcc","+fix=4'b0110",]
+        - opt_sim_run :  []
+        - opt_lint_run: []
+        - opt_cdc_run: []
+        - opt_synth_run: []
+        - opt_fev_run: []
       
